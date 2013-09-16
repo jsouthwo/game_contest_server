@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+    <%= form_for @user url: { :action= => "create" } do |f| %>
+        <%= f.text_field :username %>
+        <%= f.password_field :password %> 
+        <%= f.password_field :password %>
+        <%= f.submit_tag  'Create new account' %>
+    <%= yield %>
 
 </body>
 </html>
