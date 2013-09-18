@@ -1,5 +1,9 @@
 == README
 
+*************************************************************************
+Remember to only merge with master after getting each assignment working.
+*************************************************************************
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
