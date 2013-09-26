@@ -8,12 +8,13 @@
     <%= f.password_field :password%>
     <br>
 
-    <%= f.label :confirmation %>
-    <%= f.password_field :confirmation %>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation %>
     <br>
 
     <%= f.label :email %>
     <%= f.text_field :email %>
+    <br>
 
     <%= f.submit 'Create new account' %>
 <% end %>
