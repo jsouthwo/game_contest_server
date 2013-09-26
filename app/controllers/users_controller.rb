@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        acceptable_params = params.require(:user).permit(:username, :password, :password_confirmation)
+        acceptable_params = params.require(:user).permit(:username, :password, :password_confirmation, :email)
         @user = User.new(acceptable_params)
 
         if @user.save
@@ -13,4 +13,5 @@ class UsersController < ApplicationController
             render :new
         end
     end
+
 end
