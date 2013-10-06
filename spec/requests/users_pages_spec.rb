@@ -37,13 +37,7 @@ describe "UsersPages" do
     end
 end
 
-<<<<<<< HEAD
-describe "Display Users" do
-    subject { page }
-
-=======
   describe "Display Users" do
->>>>>>> gmaster
     describe "individually" do
         let(:user) { FactoryGirl.create(:user) }
 
@@ -71,13 +65,7 @@ describe "Display Users" do
     end
 end
 
-<<<<<<< HEAD
-describe "Edit users" do
-    subject { page }
-
-=======
   describe "Edit users" do
->>>>>>> gmaster
     let (:user) { FactoryGirl.create(:user) }
     let!(:orig_username) { user.username }
     let (:submit) { 'Update account' }
@@ -125,8 +113,6 @@ describe "Edit users" do
             expect { click_button submit }.not_to change(User, :count)
         end
     end
-<<<<<<< HEAD
-=======
   end
 
   describe "Delete users" do
@@ -139,5 +125,4 @@ describe "Edit users" do
       expect { click_link('delete') }.to change(User, :count).by(-1)
     end
   end
->>>>>>> gmaster
 end
