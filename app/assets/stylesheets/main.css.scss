@@ -1,0 +1,7 @@
+@import "bootstrap_variables";
+@import "bootstrap";
+
+.field_with_errors{
+    @extend .has-error;
+    @extend .form-group;
+}
