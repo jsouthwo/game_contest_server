@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     def create
         @user = User.find_by(username: params[:username])
         if @user and @user.authenticate(params[:password])
-            # Name of cookie is user_id
             cookies.signed[:user_id] = @user.id
             flash[:success] = "#{@user.username} logged in"
             redirect_to @user
@@ -17,7 +16,8 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        cookies.delete[:user_id]
+        flash[:info] = "You have been logged out"
+        cookies.delete :user_id
         redirect_to root_path
     end
 

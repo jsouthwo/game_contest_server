@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
         if @user.save
             flash[:success] = "Welcome to the site: #{@user.username}"
-            redirect_to @user
+            render template: 'sessions#create'
+            #redirect_to @user
         else
             render :new
         end

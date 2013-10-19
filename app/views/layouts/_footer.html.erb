@@ -1,0 +1,16 @@
+<div class='footer'>
+    <div class='container'>
+        <div class='col-lg-2 col-lg-offset-5'>
+            <p class='text-muted text-center'>
+            <% if logged_in? then %>
+                <%= link_to "Profile", user_path(@user) %>
+                |
+                <%= link_to "Settings", edit_user_path(@user) %>
+            <% else %>
+                <%= link_to "Home", login_path %>
+            <% end %>
+            </p>
+        </div>
+    </div>
+</div>
+

@@ -8,17 +8,21 @@
     </head>
     <body>
 
+        <div class='wrap'>
 
-        <% flash.each do |level, message| %>
-            <div class="alert alert-<%= level %>"> <%= message %> </div>
-        <% end %>
+            <% flash.each do |level, message| %>
+                <div class="alert alert-<%= level %>"> <%= message %> </div>
+            <% end %>
 
-        <%= render "layouts/navbar" %>
+            <%= render "layouts/navbar" %>
 
-        <div class="container">
-            <%= yield %>
+            <div class="container">
+                <%= yield %>
+            </div>
+
+            <%= render "layouts/footer" %>
+
         </div>
-
 
     </body>
 </html>
