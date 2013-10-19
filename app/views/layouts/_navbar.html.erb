@@ -22,20 +22,35 @@
 
             </ul>
 
+            <!--
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login">Sign In</a></li>
+                <li><a href="/login">Log In</a></li>
                 <li><a href="/signup">Sign Up</a></li>
             </ul>
-            <!--
-            <div class="nav navbar-nav navbar-right">
-                <a href="#">
-                    <button type="button" class="btn btn-default navbar-btn" >Sign in</button>
-                </a>
-                <a href="/signup">
-                    <button type="button" class="btn btn-primary navbar-btn" >Sign up</button>
-                </a>
-            </div>
             -->
+
+            <div class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+                    <!--
+                    <li><a href="#">
+                        <button type="button" class="btn btn-default navbar-btn" >Log In</button>
+                    </a></li>
+                    <a href="/signup">
+                        <button type="button" class="btn btn-primary navbar-btn" >Sign up</button>
+                    </a>
+                    <%= link_to "<button type='button' class='btn btn-default navbar-btn' >Sign up</button>".html_safe, signup_path %>
+                    -->
+                    <% if ! logged_in? then %>
+                        <li><%= button_to "Log In", login_path, :method => :get, class: 'btn btn-default navbar-btn' %></li>
+                    <% else %>
+                        <li><%= button_to "Log Out", login_path, :method => :delete, class: 'btn btn-default navbar-btn' %></li>
+                        <%= link_to 'Log Out', logout_path, method: :delete, data:{ confirm: 'Leaving already?'} %> 
+
+                    <% end %>
+                    <li><%= button_to "Sign up", signup_path, :method => :get, class: 'btn btn-default navbar-btn' %></li>
+                </ul>
+            </div>
+
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>

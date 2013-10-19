@@ -8,41 +8,17 @@
     </head>
     <body>
 
+
         <% flash.each do |level, message| %>
             <div class="alert alert-<%= level %>"> <%= message %> </div>
         <% end %>
 
-        <!-- Insert navbar here. -->
         <%= render "layouts/navbar" %>
 
         <div class="container">
             <%= yield %>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1>
-            Does it scroll correctly?
-        </h1>
+
+
     </body>
 </html>
