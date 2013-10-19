@@ -54,7 +54,6 @@ describe "AuthorizationPages" do
 
     let(:user) { FactoryGirl.create(:user) }
 
-=begin
     describe "non-authenticated users" do
         describe "for Users controller" do
             describe "edit action" do
@@ -77,7 +76,6 @@ describe "AuthorizationPages" do
             end
         end
     end
-=end
 
 =begin
     describe "authenticated users" do

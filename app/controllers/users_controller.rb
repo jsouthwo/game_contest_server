@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
-    before_action :ensure_user_logged_in, only: [:edit, :update]
-    before_action :ensure_correct_user, only: [:edit, :update]
-    before_action :ensure_admin, only: [:destroy]
+    before_action only: [:edit, :update] do
+        ensure_user_logged_in
+    end
+
+    before_action only: [:edit, :update] do
+        ensure_correct_user
+    end
+
+    before_action only: [:destroy] do
+        ensure_admin
+    end
 
     def new
         @user = User.new
@@ -14,7 +22,7 @@ class UsersController < ApplicationController
         if @user.save
             flash[:success] = "Welcome to the site: #{@user.username}"
             render template: 'sessions#create'
-            #redirect_to @user
+            redirect_to @user
         else
             render :new
         end
@@ -23,6 +31,9 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
+        if ! ( ensure_admin?(@user) or ensure_correct_user(@user) )
+            render login_path
+        end
     end
 
 
@@ -62,16 +73,25 @@ class UsersController < ApplicationController
 
 
         def ensure_user_logged_in
-            redirect_to login_path unless logged_in?
+            unless logged_in?
+                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
+                redirect_to login_path
+            end
         end
 
 
         def ensure_correct_user
-            redirect_to users_path unless current_user?(@user)
+            unless current_user?(@user)
+                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
+                redirect_to users_path unless current_user?(@user)
+            end
         end
 
         def ensure_admin
-            redirect_to root_path unless current_user.admin?
+            unless current_user.admin?
+                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
+                redirect_to root_path
+            end
         end
 
 end

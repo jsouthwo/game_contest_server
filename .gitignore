@@ -17,5 +17,6 @@
 *~
 *.swp
 *.swo
+#
 # Ignore git merge files
 *.orig
