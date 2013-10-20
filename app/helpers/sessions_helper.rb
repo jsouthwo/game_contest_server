@@ -1,5 +1,4 @@
 module SessionsHelper
-    # TODO: need to unsign cookies?
 
     def logged_in?
         !current_user.nil?

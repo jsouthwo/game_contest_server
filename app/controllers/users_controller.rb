@@ -35,9 +35,6 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
-        if ! ( ensure_admin?(@user) or ensure_correct_user(@user) )
-            render login_path
-        end
     end
 
 
@@ -95,8 +92,8 @@ class UsersController < ApplicationController
             end
         end
 
-
         def ensure_correct_user
+            @user = User.find(params[:id])
             unless current_user?(@user)
                 flash[:danger] = "#{current_user.username}, you may not update that account."
                 redirect_to root_path

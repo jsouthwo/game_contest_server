@@ -88,7 +88,6 @@ describe "UsersPages" do
         end
     end
 
-=begin
     describe "Edit users" do
         let (:user) { FactoryGirl.create(:user) }
         let!(:orig_username) { user.username }
@@ -176,7 +175,6 @@ describe "UsersPages" do
             end
         end
     end
-=end
 
     describe "Delete users" do
         describe "as anonymous" do
