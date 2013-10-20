@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+    before_action only: [:new, :create] do
+        ensure_user_not_logged_in
+    end
+
     before_action only: [:edit, :update] do
         ensure_user_logged_in
     end
@@ -51,7 +55,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update(acceptable_params)
             flash[:success] = "Successfully updated your account, #{@user.username}."
-            redirect_to root_path
+            redirect_to user_path
         else
             render :edit
         end
@@ -60,8 +64,13 @@ class UsersController < ApplicationController
 
     def destroy
         @user = User.find(params[:id])
-        @user.destroy
-        redirect_to users_path
+        if current_user?(@user) then # Don't let admin delete self
+            flash[:danger] = "Admin may not delete self."
+            redirect_to root_path
+        else
+            @user.destroy
+            redirect_to root_path
+        end
     end
 
 
@@ -71,10 +80,16 @@ class UsersController < ApplicationController
             params.require(:user).permit(:username, :password, :password_confirmation, :email)
         end
 
+        def ensure_user_not_logged_in
+            if logged_in?
+                flash[:warning] = "Cannot be logged in"
+                redirect_to root_path
+            end
+        end
 
         def ensure_user_logged_in
             unless logged_in?
-                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
+                flash[:warning] = "Gotta be logged in"
                 redirect_to login_path
             end
         end
@@ -82,14 +97,14 @@ class UsersController < ApplicationController
 
         def ensure_correct_user
             unless current_user?(@user)
-                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
-                redirect_to users_path unless current_user?(@user)
+                flash[:danger] = "#{current_user}, you may not update #{@user}'s account."
+                redirect_to root_path
             end
         end
 
         def ensure_admin
             unless current_user.admin?
-                flash[:warning] = "I'm afraid you'ren't allowed to touch that"
+                flash[:warning] = "Gotta be an admin"
                 redirect_to root_path
             end
         end

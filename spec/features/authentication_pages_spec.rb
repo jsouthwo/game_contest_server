@@ -77,7 +77,6 @@ describe "AuthorizationPages" do
         end
     end
 
-=begin
     describe "authenticated users" do
         before { login user, avoid_capybara: true }
 
@@ -105,9 +104,7 @@ describe "AuthorizationPages" do
             end
         end
     end
-=end
 
-=begin
     describe "authenticated, but wrong user" do
         let(:other_user) { FactoryGirl.create(:user) }
 
@@ -138,9 +135,7 @@ describe "AuthorizationPages" do
             end
         end
     end
-=end
 
-=begin
     describe "authenticated, but non-admin user" do
         let(:other_user) { FactoryGirl.create(:user) }
 
@@ -158,9 +153,7 @@ describe "AuthorizationPages" do
             end
         end
     end
-=end
 
-=begin
     describe "authenticated admin user" do
         describe "delete action (self)", type: :request do
             let(:admin) { FactoryGirl.create(:admin) }
@@ -179,5 +172,4 @@ describe "AuthorizationPages" do
             end
         end
     end
-=end
 end
