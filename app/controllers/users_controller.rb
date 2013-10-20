@@ -24,8 +24,8 @@ class UsersController < ApplicationController
         @user = User.new(acceptable_params)
 
         if @user.save
-            flash[:success] = "Welcome to the site: #{@user.username}"
-            render template: 'sessions#create'
+            flash[:success] = "Welcome to the site, #{@user.username}."
+            login(@user)
             redirect_to @user
         else
             render :new
@@ -68,8 +68,9 @@ class UsersController < ApplicationController
             flash[:danger] = "Admin may not delete self."
             redirect_to root_path
         else
+            flash[:success] = "#{@user.username} deleted"
             @user.destroy
-            redirect_to root_path
+            redirect_to users_path
         end
     end
 
@@ -97,7 +98,7 @@ class UsersController < ApplicationController
 
         def ensure_correct_user
             unless current_user?(@user)
-                flash[:danger] = "#{current_user}, you may not update #{@user}'s account."
+                flash[:danger] = "#{current_user.username}, you may not update that account."
                 redirect_to root_path
             end
         end

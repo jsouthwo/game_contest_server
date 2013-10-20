@@ -15,6 +15,11 @@ module SessionsHelper
     def current_user?(user)
         current_user == user
     end
+
+    def login(user)
+        cookies.signed[:user_id] = user.id
+    end
+
 end
 
 

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "UsersPages" do
     subject { page }
 
-=begin
     describe "Sign Up" do
         let(:submit) { 'Create new account' }
 
@@ -60,7 +59,6 @@ describe "UsersPages" do
             end
         end
     end
-=end
 
     describe "Display Users" do
         describe "individually" do

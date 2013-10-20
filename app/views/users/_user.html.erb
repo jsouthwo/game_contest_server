@@ -1,9 +1,11 @@
 <li> 
 <%= link_to user.username, user_path(user) %>  | 
 <%= link_to user.email, user_path(user) %>  | 
-<%= link_to 'delete this user', 
-            user_path(user), 
-            method: :delete, 
-            data:{ confirm: 'Are you sure?'} %> 
+<% if logged_in? and current_user.admin? and not current_user?(user)%>
+    <%= link_to 'delete this user', 
+        user_path(user), 
+        method: :delete, 
+        data:{ confirm: 'Are you sure?'} %> 
+<% end %>
 </li>
 
