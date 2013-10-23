@@ -8,9 +8,40 @@ describe "UsersPages" do
 
         before { visit signup_path }
 
-        describe "passwords are not visible when typing" do
-            it { should have_field 'user_password', type: 'password' }
-            it { should have_field 'user_password_confirmation', type: 'password' }
+    describe "passwords are not visible when typing" do
+      it { should have_field 'user_password', type: 'password' }
+      it { should have_field 'user_password_confirmation', type: 'password' }
+    end
+
+    describe "with invalid information" do
+      it "does not add the user to the system" do
+	expect { click_button submit }.not_to change(User, :count)
+      end
+
+      it "produces an error message" do
+	click_button submit
+	should have_alert(:danger)
+      end
+    end
+
+    describe "with valid information" do
+      before do
+	fill_in 'Username', with: 'User Name'
+	fill_in 'Email', with: 'user@example.com'
+	fill_in 'Password', with: 'password'
+	fill_in 'Confirmation', with: 'password'
+      end
+
+      it "allows the user to fill in user fields" do
+        click_button submit
+      end
+
+      describe "redirects properly", type: :request do
+	before do
+	  post users_path, user: { username: 'User Name',
+				   email: 'user@example.com',
+				   password: 'password',
+				   password_confirmation: 'password' }
         end
 
         describe "with invalid information" do
@@ -18,46 +49,23 @@ describe "UsersPages" do
                 expect { click_button submit }.not_to change(User, :count)
             end
 
-            it "produces an error message" do
-                click_button submit
-                should have_selector('div.alert.alert-danger')
-            end
-        end
-        describe "with valid information" do
-            before do
-                fill_in 'Username', with: 'User Name'
-                fill_in 'Email', with: 'user@example.com'
-                fill_in 'Password', with: 'password'
-                fill_in 'Confirmation', with: 'password'
-            end
+	it { should have_link('Log Out') }
+	it { should_not have_link('Log In') }
+	it { should have_alert(:success, text: 'Welcome') }
+      end
+    end
+  end
 
-            it "allows the user to fill in user fields" do
-                click_button submit
-            end
+  describe "Display Users" do
+    describe "individually" do
+      let(:user) { FactoryGirl.create(:user) }
 
-            describe "redirects properly", type: :request do
-                before do
-                    post users_path, user: { username: 'User Name',
-                        email: 'user@example.com',
-                        password: 'password',
-                        password_confirmation: 'password' }
-                end
+      before { visit user_path(user) }
 
-                specify { expect(response).to redirect_to(user_path(assigns(:user))) }
-            end
-
-            it "adds a new user to the system" do
-                expect { click_button submit }.to change(User, :count).by(1)
-            end
-
-            describe "after creating the user" do
-                before { click_button submit }
-
-                it { should have_link('Log Out') }
-                it { should_not have_link('Log In') }
-                it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-            end
-        end
+      it { should have_content(user.username) }
+      it { should have_content(user.email) }
+      it { should_not have_content(user.password) }
+      it { should_not have_content(user.password_digest) }
     end
 
     describe "Display Users" do
@@ -81,11 +89,33 @@ describe "UsersPages" do
             it { should have_content('List of users') }
             it { should have_content('25 users') }
 
-            # fix up with pagination later...
-            User.all.each do |user|
-                it { should have_selector('li', text: user.username) }
-            end
-        end
+    it { should have_field('Username', with: user.username) }
+    it { should have_field('Email', with: user.email) }
+    it { should_not have_field('Password', with: user.password) }
+
+    describe "with invalid information" do
+      before do
+	fill_in 'Username', with: ''
+	fill_in 'Email', with: user.email
+	fill_in 'Password', with: user.password
+	fill_in 'Confirmation', with: user.password
+      end
+
+      describe "does not change data" do
+        before { click_button submit }
+
+        specify { expect(user.reload.username).not_to eq('') }
+        specify { expect(user.reload.username).to eq(orig_username) }
+      end
+
+      it "does not add a new user to the system" do
+        expect { click_button submit }.not_to change(User, :count)
+      end
+
+      it "produces an error message" do
+	click_button submit
+	should have_alert(:danger)
+      end
     end
 
     describe "Edit users" do
@@ -135,8 +165,10 @@ describe "UsersPages" do
                     password_confirmation: user.password }
             end
 
-            specify { expect(user.reload).not_to be_admin }
-        end
+      it "produces an update message" do
+	click_button submit
+	should have_alert(:success)
+      end
 
         describe "with valid information" do
             before do
@@ -217,10 +249,10 @@ describe "UsersPages" do
                 specify { expect(response).to redirect_to(users_path) }
             end
 
-            it "produces a delete message" do
-                click_link('delete', match: :first)
-                should have_selector('div.alert.alert-success')
-            end
+      it "produces a delete message" do
+	click_link('delete', match: :first)
+	should have_alert(:success)
+      end
 
             it "removes a user from the system" do
                 expect { click_link('delete', match: :first) }.to change(User, :count).by(-1)
