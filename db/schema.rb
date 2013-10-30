@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030165348) do
+ActiveRecord::Schema.define(version: 20131030171338) do
 
   create_table "contests", force: true do |t|
     t.datetime "deadline"
@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(version: 20131030165348) do
     t.string   "password_digest"
     t.string   "email"
     t.boolean  "admin",           default: false
+    t.boolean  "contest_creator"
+    t.boolean  "banned"
+    t.string   "chat_url"
   end
 
 end
