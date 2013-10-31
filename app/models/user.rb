@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     has_many :referees
     has_many :contests
     has_many :players
+    has_many :matches, as: :manager
 
     validates :username,       presence: true, uniqueness: true, length: {maximum: 20}
     validates :password,       presence: true
