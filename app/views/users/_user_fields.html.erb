@@ -9,18 +9,26 @@
     </ul>
 <% end %>
 
-<%= f.label :username %>
-<%= f.text_field :username, class: 'form-control' %>
+<div class='form-group'>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %>
+</div>
 <br>
 
-<%= f.label :email %>
-<%= f.text_field :email, class: 'form-control' %>
+<div class='form-group'>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+</div>
 <br>
 
-<%= f.label :password %>
-<%= f.password_field :password, class: 'form-control' %>
+<div class='form-group'>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+</div>
 <br>
 
-<%= f.label :password_confirmation, "Confirmation" %>
-<%= f.password_field :password_confirmation, class: 'form-control'  %>
+<div class='form-group'>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, class: 'form-control'  %>
+</div>
 <br>
