@@ -1,19 +1,21 @@
 class RefereesController < ApplicationController
     def new
-        @referee = current_user.referees.build.new
+        @referee = current_user.referees.build  #.new
     end
 
     def create
-        @referee = current_user.referees.build.new(acceptable_params))
+        @referee = current_user.referees.build(acceptable_params)  #.new(acceptable_params)
+        if @referee.save
+            flash[:success] = 'Referee created.'
+            redirect_to @referee #referee_path
+        else
+            render :new
+        end
     end
 
-=begin
-    def create
+    def show
+        @referee = Referee.find(params[:id])
     end
-
-    def create
-    end
-=end
 
     private
         def acceptable_params

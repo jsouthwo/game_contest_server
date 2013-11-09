@@ -28,3 +28,6 @@
 
 # Be sure to keep around this file if it matched earlier
 !.gitkeep
+
+# Where uploaded files go for us to test stuff.
+/code

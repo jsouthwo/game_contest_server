@@ -11,17 +11,20 @@ class Referee < ActiveRecord::Base
         #
         if uploaded_io.nil?
             # problem -- deal with later
+            'lala'
         else
             file_location = Rails.root.join('code',
                                             'referees',
-                                            time_no_spaces + current_user.id.to_s
-                                           )
-            self.file_location = 'the final location on the server'
+                                            Rails.env,
+                                            time_no_spaces# + current_user.id.to_s
+                                           ).to_s
+            IO::copy_stream(uploaded_io, file_location)
+            self.file_location = file_location
         end
     end
 
-    validates :name               presence: true
-    validates :rules_url          presence: true
-    validates :players_per_game   presence: true
-    validates :upload,            presence: true
+    validates :name,                presence: true, uniqueness: true
+    validates :rules_url,           presence: true
+    validates :players_per_game,    presence: true
+    validates :file_location,       presence: true
 end
