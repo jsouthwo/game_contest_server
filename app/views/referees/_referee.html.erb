@@ -4,7 +4,7 @@
 <ul>
     <% @referees.each do |referee| %>
         <li>
-        <%= referee.name %> |
+        <%= link_to referee.name, referee_path(referee) %> |
         <% if logged_in? and current_user?(referee.user) %>
             <%= link_to 'delete', referee_path(referee), method: :delete, data: { confirm: 'Are you sure?'} %> 
         <% end %>
