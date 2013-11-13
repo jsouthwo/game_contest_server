@@ -77,34 +77,4 @@ class UsersController < ApplicationController
         def acceptable_params
             params.require(:user).permit(:username, :password, :password_confirmation, :email)
         end
-
-        def ensure_user_not_logged_in
-            if logged_in?
-                flash[:warning] = "Cannot be logged in"
-                redirect_to root_path
-            end
-        end
-
-        def ensure_user_logged_in
-            unless logged_in?
-                flash[:warning] = "Gotta be logged in"
-                redirect_to login_path
-            end
-        end
-
-        def ensure_correct_user
-            @user = User.find(params[:id])
-            unless current_user?(@user)
-                flash[:danger] = "#{current_user.username}, you may not update that account."
-                redirect_to root_path
-            end
-        end
-
-        def ensure_admin
-            unless current_user.admin?
-                flash[:warning] = "Gotta be an admin"
-                redirect_to root_path
-            end
-        end
-
 end

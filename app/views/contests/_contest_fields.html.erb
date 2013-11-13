@@ -1,0 +1,49 @@
+<% if @contest.errors.any? %>
+    <div class="alert alert-danger">
+        <p>You have <%= pluralize(@contest.errors.count, 'error') %>. </p>
+    </div>
+    <ul class="text-danger">
+        <% @contest.errors.full_messages.each do |message| %>
+            <li> <%= message %> </li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+
+<div class='form-group'>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control'%>
+</div>
+
+<div class='form-group'>
+    <%= f.label :deadline %>
+    <%= f.datetime_select :deadline, class: 'form-control'%>
+</div>
+
+<div class='form-group'>
+    <%= f.label :start %>
+    <%= f.datetime_select :start, class: 'form-control'%>
+</div>
+
+<div class='form-group'>
+    <%= f.label :description %>
+    <%= f.text_field :description, class: 'form-control'%>
+</div>
+
+<div class='form-group'>
+    <%= f.label :contest_type %>
+    <%= f.text_field :contest_type, class: 'form-control' %>
+</div>
+
+<div class='form-group'>
+    <%= f.label :referee %>
+    <% referee_list = options_from_collection_for_select(Referee.all, :id, :name) %>
+    <%= f.select :referee, referee_list ,{} ,class: 'form-control' %>
+</div>
+
+<!--
+<div>
+Contest description
+</div>
+-->

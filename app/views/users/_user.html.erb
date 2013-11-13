@@ -1,11 +1,41 @@
-<li> 
-<%= link_to user.username, user_path(user) %>  | 
-<%= link_to user.email, user_path(user) %>  | 
-<% if logged_in? and current_user.admin? and not current_user?(user)%>
-    <%= link_to 'delete this user', 
-        user_path(user), 
-        method: :delete, 
-        data:{ confirm: 'Are you sure?'} %> 
-<% end %>
-</li>
+    <li> 
+    <%= link_to user.username, user_path(user) %>  | 
+    <%= link_to user.email, user_path(user) %>
+    <% if logged_in? and current_user.admin? and not current_user?(user) %>
+        <%= link_to 'delete this user', user_path(user), method: :delete, data: { confirm: 'Are you sure?'} %> 
+    <% end %>
+    </li>
+</ul>
 
+<h2> Players </h2>
+<h4> <%= link_to "New Player", new_player_path %> </h4>
+
+<ul>
+    <% @players = user.players %> players:
+    <%= @players.length %> players:
+    <% @players.each do |player| %>
+        <li>
+        <%= player.name %> |
+        <% if logged_in? and current_user?(user) %>
+            <%= link_to 'delete', player_path(player), method: :delete, data: { confirm: 'Are you sure?'} %> 
+        <% end %>
+        </li>
+    <% end %>
+</ul>
+
+<% @referees = user.referees %>
+<% if logged_in? and current_user?(user) and contest_creator?(user) %>
+    <h2> Referees </h2>
+    <h4> <%= link_to "New Referee", new_referee_path %> </h4>
+    <%= @referees.length %> referees:
+<% end %>
+<ul>
+    <% @referees.each do |referee| %>
+        <li>
+        <%= referee.name %> |
+        <% if logged_in? and current_user?(user) %>
+            <%= link_to 'delete', referee_path(referee), method: :delete, data: { confirm: 'Are you sure?'} %> 
+        <% end %>
+        </li>
+    <% end %>
+</ul>

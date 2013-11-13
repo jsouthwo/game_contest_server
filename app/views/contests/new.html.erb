@@ -1,0 +1,6 @@
+<h1> Make a new contest! </h1>
+<%= form_for @contest do |form| %>
+    <%= render 'contest_fields', f: form %>
+    <%= form.submit "Create Contest", class: 'btn btn-primary'%>
+<% end %> 
+

@@ -1,0 +1,12 @@
+<h2> Referees </h2>
+<h4> <%= link_to "New Referee", new_referee_path %> </h4>
+<%= @referees.length %> referees:
+<ul>
+    <% @referees.each do |referee| %>
+        <li>
+        <%= referee.name %> |
+        <% if logged_in? and current_user?(referee.user) %>
+            <%= link_to 'delete', referee_path(referee), method: :delete, data: { confirm: 'Are you sure?'} %> 
+        <% end %>
+        </li>
+    <% end %>

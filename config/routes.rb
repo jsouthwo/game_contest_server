@@ -16,6 +16,12 @@ GameContestServer::Application.routes.draw do
     # Referees controller
     resources :referees
 
+    # Contests controller
+    resources :contests
+
+    # Players controller
+    resources :players
+
 
 
     # The priority is based upon order of creation: first created -> highest priority.

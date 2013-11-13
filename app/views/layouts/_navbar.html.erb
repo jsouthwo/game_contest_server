@@ -27,11 +27,14 @@
                     <li><a href=<%= login_path %>>Log In</a></li>
                     <li><a href=<%= signup_path %>>Sign Up</a></li>
                 <% else %>
+                    <li><a href=<%= new_player_path %>>New Player</a></li>
+                    <li><a href=<%= new_contest_path %>>New Contest</a></li>
+                    <li><a href=<%= new_referee_path %>>New Referee</a></li>
                     <li><a href=<%= logout_path %>>Log Out</a></li>
                 <% end %>
-                <!--
             </ul>
 
+            <!--
             <div class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav">
                     <li><a href="#">
@@ -45,7 +48,8 @@
                         <% end %>
                         <li><%= button_to "Sign up", signup_path, :method => :get, class: 'btn btn-default navbar-btn' %></li>
                     </ul>
-                    </div>-->
+                </div>
+                -->
 
             </div><!-- /.navbar-collapse -->
         </div>

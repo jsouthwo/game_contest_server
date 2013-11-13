@@ -4,10 +4,10 @@ class RefereesController < ApplicationController
     end
 
     def create
-        @referee = current_user.referees.build(acceptable_params)  #.new(acceptable_params)
+        @referee = current_user.referees.build(acceptable_params)
         if @referee.save
             flash[:success] = 'Referee created.'
-            redirect_to @referee #referee_path
+            redirect_to @referee
         else
             render :new
         end
@@ -15,6 +15,24 @@ class RefereesController < ApplicationController
 
     def show
         @referee = Referee.find(params[:id])
+    end
+
+    def index
+        @referees = Referee.all
+    end
+
+    def destroy
+=begin from users_controller.rb
+        @user = User.find(params[:id])
+        if current_user?(@user) then # Don't let admin delete self
+            flash[:danger] = "Admin may not delete self."
+            redirect_to root_path
+        else
+            flash[:success] = "#{@user.username} deleted"
+            @user.destroy
+            redirect_to users_path
+        end
+=end
     end
 
     private
