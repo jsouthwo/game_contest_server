@@ -2,6 +2,14 @@ class ContestsController < ApplicationController
     before_action only: [:new, :create, :edit, :update] do
         ensure_user_logged_in
     end
+
+    before_action only: [:new, :create] do
+        ensure_contest_creator
+    end
+
+    before_action only: [:index] do
+        ensure_contest_creator
+    end
 =begin
 
     before_action only: [:destroy] do
