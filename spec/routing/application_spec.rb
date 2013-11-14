@@ -6,6 +6,6 @@ feature "NamedRoutes" do
 
     specify { expect(get(signup_path)).to be_routable }
     specify { expect(get(login_path)).to be_routable }
-    specify { expect(delete(logout_path)).to be_routable }
+    specify { expect(get(logout_path)).to be_routable }
   end
 end

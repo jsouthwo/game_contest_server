@@ -11,7 +11,7 @@ class Player < ActiveRecord::Base
     validates :name,            presence: true
     validates :downloadable,    presence: true
     validates :playable,        presence: true
+=end
     validates :contest,         presence: true 
     validates :user,            presence: true 
-=end
 end

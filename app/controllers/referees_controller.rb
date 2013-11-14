@@ -8,6 +8,10 @@ class RefereesController < ApplicationController
         ensure_user_logged_in
     end
 
+    before_action only: [:edit, :update] do
+        ensure_user_logged_in
+    end
+
     def new
         @referee = current_user.referees.build
     end
@@ -51,6 +55,7 @@ class RefereesController < ApplicationController
         @referee = Referee.find(params[:id])
         flash[:success] = "#{@referee.name} deleted"
         @referee.destroy
+        File.delete(@referee.file_location)
         redirect_to referees_path
     end
 

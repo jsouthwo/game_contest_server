@@ -1,3 +1,4 @@
+require 'securerandom'
 class Referee < ActiveRecord::Base
     # means one user to many referees
     belongs_to :user
@@ -16,7 +17,7 @@ class Referee < ActiveRecord::Base
             file_location = Rails.root.join('code',
                                             'referees',
                                             Rails.env,
-                                            time_no_spaces# + current_user.id.to_s
+                                            time_no_spaces + SecureRandom.hex
                                            ).to_s
             IO::copy_stream(uploaded_io, file_location)
             self.file_location = file_location

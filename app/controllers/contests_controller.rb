@@ -1,5 +1,5 @@
 class ContestsController < ApplicationController
-    before_action only: [:new, :create] do
+    before_action only: [:new, :create, :edit, :update] do
         ensure_user_logged_in
     end
 =begin
