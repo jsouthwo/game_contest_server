@@ -1,5 +1,6 @@
-<h1> REFEREE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! </h1>
+<h1> Referee: </h1>
 
 <p>Name: <%= @referee.name %></p>
+<p>Owner: <%= @referee.user.username %> </p>
 <p><%= link_to 'Rules', @referee.rules_url %></p>
 <p>Players per game: <%= @referee.players_per_game %></p>

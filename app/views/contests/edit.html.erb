@@ -1,1 +1,5 @@
 <h1> Edit contest </h1>
+<%= form_for @contest do |form| %>
+    <%= render 'contest_fields', f: form %>
+    <%= form.submit "Edit Contest", class: 'btn btn-primary'%>
+<% end %> 
