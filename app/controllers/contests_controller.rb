@@ -3,6 +3,10 @@ class ContestsController < ApplicationController
         ensure_user_logged_in
     end
 
+    before_action only: [:destroy] do
+        ensure_user_logged_in
+    end
+
     def new
         @contest = current_user.contests.build
     end

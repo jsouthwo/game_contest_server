@@ -8,6 +8,9 @@ gem 'sqlite3'
 
 gem 'bcrypt-ruby', '~>3.0.0'
 
+# self-insert
+gem 'validate_url'
+
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -17,7 +20,7 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'bcrypt-ruby', '~> 3.0.0'
+#gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

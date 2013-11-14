@@ -1,4 +1,13 @@
 class RefereesController < ApplicationController
+=begin
+    before_action only: [:new, :create] do
+        ensure_contest_creator
+    end
+=end
+    before_action only: [:new, :create] do
+        ensure_user_logged_in
+    end
+
     def new
         @referee = current_user.referees.build
     end
