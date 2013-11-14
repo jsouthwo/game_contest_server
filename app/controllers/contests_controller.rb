@@ -10,6 +10,7 @@ class ContestsController < ApplicationController
     def create
         @contest = current_user.contests.build(acceptable_params)
         @contest.referee = Referee.find(params[:contest][:referee])
+        #@contest.referee = Referee.find(params[:contest][:referee].to_i)
         if @contest.save
             flash[:success] = 'Contest created'
             redirect_to @contest
@@ -26,6 +27,7 @@ class ContestsController < ApplicationController
     def update
         @contest = Contest.find(params[:id])
         @contest.referee = Referee.find(params[:contest][:referee])
+        #@contest.referee = Referee.find(params[:contest][:referee].to_i)
         if @contest.update(acceptable_params)
             flash[:success] = 'Contest updated'
             redirect_to @contest
