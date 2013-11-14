@@ -2,10 +2,12 @@ class ContestsController < ApplicationController
     before_action only: [:new, :create] do
         ensure_user_logged_in
     end
+=begin
 
     before_action only: [:destroy] do
-        ensure_user_logged_in
+        ensure_admin
     end
+=end
 
     def new
         @contest = current_user.contests.build
