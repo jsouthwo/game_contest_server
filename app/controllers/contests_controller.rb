@@ -47,7 +47,7 @@ class ContestsController < ApplicationController
 
     def update
         @contest = Contest.find(params[:id])
-        puts "PARAMS: " + params.to_s
+#        puts "PARAMS: " + params.to_s
         @contest.referee = Referee.find_by_id(params[:contest][:referee])
         #@contest.referee = Referee.find(params[:contest][:referee].to_i)
         if @contest.update(acceptable_params)
