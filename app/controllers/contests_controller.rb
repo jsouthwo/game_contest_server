@@ -1,21 +1,26 @@
 class ContestsController < ApplicationController
-    before_action only: [:new, :create, :edit, :update] do
-        ensure_user_logged_in
+    before_action only: [:new, :create] do
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_contest_creator__flash_danger_goes_to_root
+        end
     end
 
-    before_action only: [:new, :create] do
-        ensure_contest_creator
+    before_action only: [:edit, :update] do
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_user_owns_contest__flash_danger_goes_to_root
+        end
     end
 
     before_action only: [:index] do
-        ensure_contest_creator
+        ensure_contest_creator__flash_danger_goes_to_root
     end
-=begin
 
     before_action only: [:destroy] do
-        ensure_admin
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_user_owns_contest__flash_danger_goes_to_root
+        end
     end
-=end
+
 
     def new
         @contest = current_user.contests.build

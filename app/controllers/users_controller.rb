@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
     before_action only: [:new, :create] do
-        ensure_user_not_logged_in
+        ensure_user_not_logged_in__flash_warn_goes_to_root
     end
 
     before_action only: [:edit, :update] do
-        ensure_user_logged_in
+        ensure_user_logged_in__flash_warn_goes_to_login
     end
 
     before_action only: [:edit, :update] do
-        ensure_correct_user
+        ensure_correct_user__flash_danger_goes_to_root
     end
 
     before_action only: [:destroy] do
-        ensure_admin
+        #ensure_admin__flash_warn_goes_to_root
+        ensure_admin__flash_danger_goes_to_root
     end
 
     def new

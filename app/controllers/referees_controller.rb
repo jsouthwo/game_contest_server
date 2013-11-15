@@ -1,15 +1,25 @@
 class RefereesController < ApplicationController
-=begin
     before_action only: [:new, :create] do
-        ensure_contest_creator
-    end
-=end
-    before_action only: [:new, :create] do
-        ensure_user_logged_in
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_contest_creator__flash_danger_goes_to_root
+        end
     end
 
     before_action only: [:edit, :update] do
-        ensure_user_logged_in
+        ensure_user_logged_in__flash_warn_goes_to_login
+    end
+
+    before_action only: [:edit, :update] do
+        # ensure_user_logged_in__flash_warn_goes_to_login
+        ensure_user_owns_referee__flash_danger_goes_to_root
+    end
+
+    before_action only: [:destroy] do
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_user_owns_referee__flash_danger_goes_to_root
+        end
+        # function below doesn't exist
+        #ensure_admin__flash_danger_goes_to_login
     end
 
     def new

@@ -11,8 +11,7 @@ GameContestServer::Application.routes.draw do
     # Sessions controller
     resources :sessions, only: [:new, :create, :destroy]
     get 'login', to: 'sessions#new', as: 'login'
-    get 'logout', to: 'sessions#destroy', as: 'logout'
-#   delete 'logout', to: 'sessions#destroy', as: 'logout'
+    delete 'logout', to: 'sessions#destroy', as: 'logout'
 
     # Referees controller
     resources :referees

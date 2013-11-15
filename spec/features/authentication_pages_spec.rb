@@ -189,6 +189,7 @@ describe "AuthorizationPages" do
 	let (:contest) { FactoryGirl.create(:contest) }
 	let (:login_user) { user }
 	let (:path) { edit_contest_path(contest) }
+        # :Signature is expected visible text, if redirect fails
 	let (:signature) { 'Edit Contest' }
 	let (:error_type) { :danger }
 	let (:method) { :patch }

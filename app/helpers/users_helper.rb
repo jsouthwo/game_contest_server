@@ -5,7 +5,7 @@ module UsersHelper
     end
 
 
-    def ensure_contest_creator
+    def ensure_contest_creator__flash_danger_goes_to_root
         @user = current_user
         unless current_user?(@user) and contest_creator?(@user)
             flash[:danger] = "#{current_user.username}, you may not do that."
@@ -14,7 +14,7 @@ module UsersHelper
     end
 
 =begin
-    def ensure_contest_owner
+    def ensure_contest_owner__flash_danger_goes_to_root
         @user = User.find(params[:id])
         unless current_user?(@user) and contest_creator?(@user)
             flash[:danger] = "#{current_user.username}, you may not do that."
