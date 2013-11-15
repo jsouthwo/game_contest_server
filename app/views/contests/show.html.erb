@@ -1,10 +1,16 @@
 <h1> Contest </h1>
-<p> Name: <%= @contest.name %> </p>
-<p> Submit Deadline: <%= @contest.deadline %> </p>
-<p> Starting Date: <%= @contest.start %> </p>
-<p> Description: <%= @contest.description %> </p>
-<p> Type: <%= @contest.contest_type %> </p>
-<p> Sponsor: <%= link_to @contest.user.username, user_path(@contest.user) %>
-<p> Referee: <%= link_to @contest.referee.name, referee_path(@contest.referee) %>
-<p> Time until deadline: <%= distance_of_time_in_words_to_now(@contest.deadline) %> </p>
-<p> Time until start: <%= distance_of_time_in_words_to_now(@contest.start) %> </p>
+<%= render @contest %>
+
+
+
+<!--
+<p> Name: <%# @contest.name %> </p>
+<p> Submit Deadline: <%# @contest.deadline %> </p>
+<p> Starting Date: <%# @contest.start %> </p>
+<p> Description: <%# @contest.description %> </p>
+<p> Type: <%# @contest.contest_type %> </p>
+<p> Sponsor: <%# link_to @contest.user.username, user_path(@contest.user) %>
+<p> Referee: <%# link_to @contest.referee.name, referee_path(@contest.referee) %>
+<p> Time until deadline: <%# distance_of_time_in_words_to_now(@contest.deadline) %> </p>
+<p> Time until start: <%# distance_of_time_in_words_to_now(@contest.start) %> </p>
+-->

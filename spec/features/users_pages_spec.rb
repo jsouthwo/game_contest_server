@@ -119,7 +119,7 @@ describe "UsersPages" do
           should_not have_link('delete', href: referee_path(ref))
         end
       end
-      it { should have_link('New Referee', href: new_referee_path) }
+#      it { should have_link('New Referee', href: new_referee_path) }
       it { should have_content('5 referees') }
 
       describe "logged in" do

@@ -22,3 +22,9 @@
         </li>
     <% end %>
 </ul>
+
+<% if user.referees.length > 0 %>
+    <h2> Referees </h2>
+    <%= user.referees.length %> referees:
+
+<% end %>

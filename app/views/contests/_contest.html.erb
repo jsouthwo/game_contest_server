@@ -5,7 +5,9 @@
 -->
 
 <h1> Contest </h1>
-<p> Name: <%= contest.name %> </p>
+<!-- <p> Name: <%# contest.name %> </p> -->
+<!--<p> Name: <%# link_to contest.name, contest_path(contest) %> </p> -->
+<li> Name: <%= link_to contest.name, contest_path(contest) %> </li>
 <p> Submit Deadline: <%= contest.deadline %> </p>
 <p> Starting Date: <%= contest.start %> </p>
 <p> Description: <%= contest.description %> </p>

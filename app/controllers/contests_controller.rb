@@ -11,12 +11,6 @@ class ContestsController < ApplicationController
         end
     end
 
-    before_action only: [:index] do
-        unless ensure_user_logged_in__flash_warn_goes_to_login
-            ensure_contest_creator__flash_danger_goes_to_root
-        end
-    end
-
     before_action only: [:destroy] do
         unless ensure_user_logged_in__flash_warn_goes_to_login
             ensure_user_owns_contest__flash_danger_goes_to_root
