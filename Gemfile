@@ -17,6 +17,7 @@ gem 'validates_timeliness', github: 'softace/validates_timeliness', branch: 'sup
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'timecop'
 end
 
 group :development, :test do
