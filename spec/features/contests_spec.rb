@@ -164,6 +164,7 @@ describe "ContestsPages" do
       end
     end
   end
+  ## end of describe "edit"
 
   describe "destroy", type: :request do
     let!(:contest) { FactoryGirl.create(:contest, user: creator) }

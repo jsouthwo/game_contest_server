@@ -12,7 +12,9 @@ class ContestsController < ApplicationController
     end
 
     before_action only: [:index] do
-        ensure_contest_creator__flash_danger_goes_to_root
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_contest_creator__flash_danger_goes_to_root
+        end
     end
 
     before_action only: [:destroy] do
@@ -28,7 +30,7 @@ class ContestsController < ApplicationController
 
     def create
         @contest = current_user.contests.build(acceptable_params)
-        @contest.referee = Referee.find(params[:contest][:referee])
+        @contest.referee = Referee.find_by_id(params[:contest][:referee])
         #@contest.referee = Referee.find(params[:contest][:referee].to_i)
         if @contest.save
             flash[:success] = 'Contest created'
@@ -45,7 +47,8 @@ class ContestsController < ApplicationController
 
     def update
         @contest = Contest.find(params[:id])
-        @contest.referee = Referee.find(params[:contest][:referee])
+        puts "PARAMS: " + params.to_s
+        @contest.referee = Referee.find_by_id(params[:contest][:referee])
         #@contest.referee = Referee.find(params[:contest][:referee].to_i)
         if @contest.update(acceptable_params)
             flash[:success] = 'Contest updated'
@@ -73,14 +76,11 @@ class ContestsController < ApplicationController
 
     private 
         def acceptable_params
-#            referee = Referee.find(params[:contest][:referee])
-#            puts referee
             params.require(:contest).permit(:name, 
                                             :deadline, 
                                             :start, 
                                             :description, 
-                                            :contest_type)#,
-                                            #:referee)
-#            end
+                                            :contest_type,
+                                            :referee_id)
         end
 end
