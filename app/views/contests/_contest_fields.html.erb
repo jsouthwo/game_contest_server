@@ -36,9 +36,9 @@
 </div>
 
 <div class='form-group'>
-    <%= f.label :referee %>
+    <%= f.label :referee_id %>
     <% referee_list = options_from_collection_for_select(Referee.all, :id, :name) %>
-    <%= f.select :referee, referee_list , {} ,class: 'form-control' %>
+    <%= f.select :referee_id, referee_list , {} ,class: 'form-control' %>
 </div>
 
 <!--

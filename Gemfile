@@ -11,7 +11,7 @@ gem 'bcrypt-ruby', '~>3.0.0'
 # self-insert
 gem 'validate_url'
 #gem 'validates_timeliness', '~> 3.0'
-gem 'validates_timeliness'
+gem 'validates_timeliness', github: 'softace/validates_timeliness', branch: 'support_for_rails4'
 #gem 'date_validator'
 
 group :test do
