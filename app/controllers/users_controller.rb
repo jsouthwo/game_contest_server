@@ -4,11 +4,9 @@ class UsersController < ApplicationController
     end
 
     before_action only: [:edit, :update] do
-        ensure_user_logged_in__flash_warn_goes_to_login
-    end
-
-    before_action only: [:edit, :update] do
-        ensure_correct_user__flash_danger_goes_to_root
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_correct_user__flash_danger_goes_to_root
+        end
     end
 
     before_action only: [:destroy] do
