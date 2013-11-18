@@ -27,6 +27,11 @@ class Referee < ActiveRecord::Base
     validates :rules_url,           presence: true, url: true
 #    validates :rules_url,           presence: true, format: {with: URI::regexp}
     validates :players_per_game,    presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to:10} 
-    # TODO: THIS SHOULD BE DONE BETTER
-    validates :file_location,       presence: true, format: { with: /code\/referees\/*/ }
+    validates :file_location,       presence: true
+    validate :valid_file_location?
+
+    def valid_file_location?
+        errors.add(:file_location, "must be valid") if 
+        self.file_location and not (File.exists?(self.file_location) or File.symlink?(self.file_location))
+    end
 end

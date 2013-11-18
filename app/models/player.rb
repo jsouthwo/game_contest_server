@@ -28,24 +28,11 @@ class Player < ActiveRecord::Base
     validates :name,            presence: true, uniqueness: true
     validates :contest,         presence: true 
     validates :user,            presence: true 
-    # TODO: THIS SHOULD BE DONE BETTER
-    validates :file_location,   presence: true, format: { with: /code\/players\/*/ }
-#    validates :file_location,   valid_file_location: true
+    validates :file_location,   presence: true
+    validate :valid_file_location?
 
-=begin
     def valid_file_location?
-        errors.add(:file_location, "must be valid") unless
-        File.exists?(:file_location.to_s) or File.symlink?(:file_location.to_s)
-        #!expiration_date.blank? and expiration_date < Date.today
+        errors.add(:file_location, "must be valid") if 
+        self.file_location and not (File.exists?(self.file_location) or File.symlink?(self.file_location)) 
     end
-
-
-    class ValidFileLocationValidator
-        def validate
-            errors.add(:file_location, "must be valid") unless
-            File.exists?(:file_location.to_s) or File.symlink?(:file_location.to_s)
-        #!expiration_date.blank? and expiration_date < Date.today
-        end
-    end
-=end
 end
