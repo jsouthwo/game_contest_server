@@ -1,6 +1,5 @@
 require 'securerandom'
 class Referee < ActiveRecord::Base
-    # means one user to many referees
     belongs_to :user
 
     has_many :contests
@@ -28,5 +27,6 @@ class Referee < ActiveRecord::Base
     validates :rules_url,           presence: true, url: true
 #    validates :rules_url,           presence: true, format: {with: URI::regexp}
     validates :players_per_game,    presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to:10} 
-    validates :file_location,       presence: true
+    # TODO: THIS SHOULD BE DONE BETTER
+    validates :file_location,       presence: true, format: { with: /code*/ }
 end
