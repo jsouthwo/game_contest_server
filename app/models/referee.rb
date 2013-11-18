@@ -28,5 +28,5 @@ class Referee < ActiveRecord::Base
 #    validates :rules_url,           presence: true, format: {with: URI::regexp}
     validates :players_per_game,    presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to:10} 
     # TODO: THIS SHOULD BE DONE BETTER
-    validates :file_location,       presence: true, format: { with: /code*/ }
+    validates :file_location,       presence: true, format: { with: /code\/referees\/*/ }
 end

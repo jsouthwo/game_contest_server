@@ -29,7 +29,7 @@ class Player < ActiveRecord::Base
     validates :contest,         presence: true 
     validates :user,            presence: true 
     # TODO: THIS SHOULD BE DONE BETTER
-    validates :file_location,   presence: true, format: { with: /code*/ }
+    validates :file_location,   presence: true, format: { with: /code\/players\/*/ }
 #    validates :file_location,   valid_file_location: true
 
 =begin
