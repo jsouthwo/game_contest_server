@@ -1,6 +1,20 @@
 <h1>List of users:</h1>
 <h3><%= @users.length %> users:</h3>
 
+<!--
 <ul>
     <%= render @users %>
+</ul>
+-->
+
+<ul>
+    <% @users.each do |user| %>
+        <li> 
+        <%= link_to user.username, user_path(user) %>  | 
+        <%= link_to user.email, user_path(user) %>
+        <% if logged_in? and current_user.admin? and not current_user?(user) %>
+            <%= link_to 'delete this user', user_path(user), method: :delete, data: { confirm: 'Are you sure?'} %> 
+        <% end %>
+        </li>
+    <% end %>
 </ul>
