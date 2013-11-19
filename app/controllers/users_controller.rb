@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     end
 
     before_action only: [:destroy] do
-        #ensure_admin__flash_warn_goes_to_root
         ensure_admin__flash_danger_goes_to_root
     end
 
