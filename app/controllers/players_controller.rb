@@ -1,12 +1,15 @@
 class PlayersController < ApplicationController
+
+    # /contests/:contest_id/players/new
     def new
-        @player = current_user.players.build
+        contest = Contest.find(params[:contest_id])
+        @player = contest.players.build
     end
 
+    # /contests/:contest_id/players/new
     def create
-        @player = current_user.players.build(acceptable_params)
-#        @contest.referee = Referee.find_by_id(params[:contest][:referee])
-#        @contest.referee = Referee.find(params[:contest][:referee].to_i)
+        contest = Contest.find(params[:contest_id])
+        @player = contest.players.build(acceptable_params)
         if @player.save
             flash[:success] = 'Player created'
             redirect_to @player
@@ -16,6 +19,14 @@ class PlayersController < ApplicationController
         end
     end
 
+=begin WILL LOOK THE SAME AS OTHER MODELS
+    def edit
+
+    end
+
+    def update
+    end
+=end
 
     private 
         def acceptable_params

@@ -29,7 +29,7 @@ class Player < ActiveRecord::Base
     validates :contest,         presence: true 
     validates :user,            presence: true 
     validates :file_location,   presence: true
-    validate :valid_file_location?
+    validate  :valid_file_location?
 
     def valid_file_location?
         errors.add(:file_location, "must be valid") if 

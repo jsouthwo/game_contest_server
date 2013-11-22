@@ -7,7 +7,7 @@
 <h1> Contest </h1>
 <!-- <p> Name: <%# contest.name %> </p> -->
 <!--<p> Name: <%# link_to contest.name, contest_path(contest) %> </p> -->
-<li> Name: <%= link_to contest.name, contest_path(contest) %> </li>
+<p> Name: <%= link_to contest.name, contest_path(contest) %> </p>
 <p> Submit Deadline: <%= contest.deadline %> </p>
 <p> Starting Date: <%= contest.start %> </p>
 <p> Description: <%= contest.description %> </p>
@@ -16,3 +16,5 @@
 <p> Referee: <%= link_to contest.referee.name, referee_path(contest.referee) %>
 <p> Time until deadline: <%= distance_of_time_in_words_to_now(contest.deadline) %> </p>
 <p> Time until start: <%= distance_of_time_in_words_to_now(contest.start) %> </p>
+
+<%= link_to 'Create player for this contest', new_contest_player_path(@contest) %>

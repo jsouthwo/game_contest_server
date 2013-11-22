@@ -17,7 +17,10 @@ GameContestServer::Application.routes.draw do
     resources :referees
 
     # Contests controller
-    resources :contests
+    resources :contests do
+        resources :players, shallow: true
+    end
+
 
     # Players controller
     resources :players
