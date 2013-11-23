@@ -13,20 +13,17 @@
 
     <div class='form-group' >
         <%= f.label :downloadable, 'Allow others to download this player' %>
-        <!--
-        <%# f.label :downloadable, 'Downloadable' %>
-        -->
-        <%= f.check_box :downloadable, class: 'form-control' %>
+        <%= f.check_box :downloadable, checked: false %>
     </div>
 
     <div class='form-group' >
         <%= f.label :playable, 'Allow others to compete against this player' %>
-        <%= f.check_box :playable, class: 'form-control' %>
+        <%= f.check_box :playable, checked: true %>
     </div>
 
     <div class='form-group'>
         <%= f.label :upload, 'Upload file' %>
-        <%= f.file_field :upload %>
+        <%= f.file_field :upload, class: 'form-control' %>
     </div>
 
     <%= f.submit 'Update Player', class: 'btn btn-primary' %>

@@ -4,17 +4,17 @@
 <li> Contest type: <%# contest.contest_type %> </li>
 -->
 
-<h1> Contest </h1>
-<!-- <p> Name: <%# contest.name %> </p> -->
-<!--<p> Name: <%# link_to contest.name, contest_path(contest) %> </p> -->
-<p> Name: <%= link_to contest.name, contest_path(contest) %> </p>
-<p> Submit Deadline: <%= contest.deadline %> </p>
-<p> Starting Date: <%= contest.start %> </p>
-<p> Description: <%= contest.description %> </p>
-<p> Type: <%= contest.contest_type %> </p>
-<p> Sponsor: <%= link_to contest.user.username, user_path(contest.user) %>
-<p> Referee: <%= link_to contest.referee.name, referee_path(contest.referee) %>
-<p> Time until deadline: <%= distance_of_time_in_words_to_now(contest.deadline) %> </p>
-<p> Time until start: <%= distance_of_time_in_words_to_now(contest.start) %> </p>
+<h3> Contest </h3>
+<!-- <li> Name: <%# contest.name %> </li> -->
+<!--<li> Name: <%# link_to contest.name, contest_path(contest) %> </li> -->
+<li> Name: <%= link_to contest.name, contest_path(contest) %> </li>
+<li> Submit Deadline: <%= contest.deadline %> </li>
+<li> Starting Date: <%= contest.start %> </li>
+<li> Description: <%= contest.description %> </li>
+<li> Type: <%= contest.contest_type %> </li>
+<li> Sponsor: <%= link_to contest.user.username, user_path(contest.user) %> </li>
+<li> Referee: <%= link_to contest.referee.name, referee_path(contest.referee) %> </li>
+<li> Time until deadline: <%= distance_of_time_in_words_to_now(contest.deadline) %> </li>
+<li> Time until start: <%= distance_of_time_in_words_to_now(contest.start) %> </li>
 
-<%= link_to 'Create player for this contest', new_contest_player_path(@contest) %>
+<%= link_to 'Create player for this contest', new_contest_player_path(contest) %>

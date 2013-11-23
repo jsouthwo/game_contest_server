@@ -76,6 +76,8 @@ class PlayersController < ApplicationController
                                             :description, 
                                             :downloadable, 
                                             :playable,
-                                            :contest_id)
+                                            :contest_id,
+                                            :user_id,
+                                            :upload)
         end
 end

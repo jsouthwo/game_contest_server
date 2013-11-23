@@ -12,12 +12,11 @@ module Uploadable
     end
 
     def upload=(uploaded_io)
+#        puts "called upload="
         time_no_spaces = Time.now.to_s.gsub(/\s/, '_')
-        # ... code and stuff ...
-        #
         if uploaded_io.nil?
             # problem -- deal with later
-            'lala'
+            puts 'PROBELM === NO UPLOADED_IO'
         else
             file_location = Rails.root.join('code',
                                             self.class.to_s.pluralize.downcase,
@@ -25,6 +24,11 @@ module Uploadable
                                             time_no_spaces + SecureRandom.hex
                                            ).to_s
             IO::copy_stream(uploaded_io, file_location)
+=begin
+            if self.class.to_s.pluralize.downcase == "players"
+                puts "FILE_LOCATION:: " + file_location
+            end
+=end
             self.file_location = file_location
         end
     end

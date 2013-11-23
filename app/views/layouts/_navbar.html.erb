@@ -14,9 +14,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li <% if current_page?(root_path) %> 
-                    class="active" 
-                <% end %> > <%= link_to 'View Users', users_path %></li>
+                <li <% if current_page?(root_path) or current_page?(users_path) %> class="active" <% end %> >
+                    <%= link_to 'View Users', users_path %>
+                </li>
+
+                <li <% if current_page?(contests_path) %> class="active" <% end %> >
+                    <%= link_to "View Contests", contests_path %>
+                </li>
+
+                <li <% if current_page?(referees_path) %> class="active" <% end %> >
+                    <%= link_to "View Referees", referees_path %>
+                </li>
 
 
             </ul>
@@ -30,9 +38,12 @@
                     <!-- TODO: Change
                     <li><a href=<%# new_player_path %>>New Player</a></li>
                     -->
-                    <li><a href=<%= new_contest_path %>>New Contest</a></li>
-                    <li><a href=<%= new_referee_path %>>New Referee</a></li>
-                    <!-- <li><a href=<%# logout_path %>>Log Out</a></li> -->
+                    <li <% if current_page?(new_contest_path) %> class="active" <% end %> >
+                        <%= link_to "New Contest", new_contest_path %>
+                    </li>
+                    <li <% if current_page?(new_referee_path) %> class="active" <% end %> >
+                        <%= link_to "New Referee", new_referee_path %>
+                    </li>
                     <li><%= link_to "Log Out", logout_path, method: :delete %></li>
                 <% end %>
             </ul>
