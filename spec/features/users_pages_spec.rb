@@ -120,7 +120,7 @@ describe "UsersPages" do
         end
       end
 # TODO: Uncomment? He said the test should change.
-#      it { should have_link('New Referee', href: new_referee_path) }
+      it { should have_link('New Referee', href: new_referee_path) }
       it { should have_content('5 referees') }
 
       describe "logged in" do

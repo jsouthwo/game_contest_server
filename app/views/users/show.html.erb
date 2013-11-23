@@ -2,7 +2,6 @@
 
 <%= render @user %>
 
-
 <% @referees = @user.referees %>
 <% if logged_in? and current_user?(@user) and contest_creator?(@user) %>
     <h2> Referees </h2>
@@ -19,3 +18,9 @@
         </li>
     <% end %>
 </ul>
+<!-- This probably shouldn't be here, 
+    but that's what his tests want right now
+-->
+<% if contest_creator?(@user) %>
+    <h4> <%= link_to "New Referee", new_referee_path %> </h4>
+<% end %>

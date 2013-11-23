@@ -43,7 +43,6 @@ class PlayersController < ApplicationController
         end
     end
 
-# WILL LOOK THE SAME AS OTHER MODELS
     def edit
         @player = Player.find(params[:id])
     end
@@ -60,6 +59,7 @@ class PlayersController < ApplicationController
     end
 
     def destroy
+        ##### TODO: HOW DOES THIS WORK???
         contest = @player.contest
         @player = Player.find(params[:id])
         flash[:success] = "#{@player.name} deleted"
@@ -73,6 +73,7 @@ class PlayersController < ApplicationController
     end
 
     def index
+        @contest = Contest.find(params[:contest_id])
         @players = Player.all
     end
 

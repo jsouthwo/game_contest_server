@@ -17,4 +17,4 @@
 <li> Time until deadline: <%= distance_of_time_in_words_to_now(contest.deadline) %> </li>
 <li> Time until start: <%= distance_of_time_in_words_to_now(contest.start) %> </li>
 
-<%= link_to 'Create player for this contest', new_contest_player_path(contest) %>
+<%= link_to 'New Player', new_contest_player_path(contest) %>
