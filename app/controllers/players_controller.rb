@@ -26,12 +26,18 @@ class PlayersController < ApplicationController
     def create
         contest = Contest.find(params[:contest_id])
         @player = contest.players.build(acceptable_params)
+        @player.user = current_user
         if @player.save
-            puts "Player saved"
             flash[:success] = 'Player created'
             redirect_to @player
         else
-            puts "Player BAD"
+=begin
+            errors = @player.errors.to_a
+            errors.each do |e|
+                puts e.to_s
+            end
+            puts
+=end
             flash.now[:danger] = 'Invalid input'
             render :new
         end
@@ -63,7 +69,7 @@ class PlayersController < ApplicationController
     end
 
     def show
-        @players = Player.find(params[:id])
+        @player = Player.find(params[:id])
     end
 
     def index
