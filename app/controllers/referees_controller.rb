@@ -6,11 +6,9 @@ class RefereesController < ApplicationController
     end
 
     before_action only: [:edit, :update] do
-        ensure_user_logged_in__flash_warn_goes_to_login
-    end
-
-    before_action only: [:edit, :update] do
-        ensure_user_owns_referee__flash_danger_goes_to_root
+        unless ensure_user_logged_in__flash_warn_goes_to_login
+            ensure_user_owns_referee__flash_danger_goes_to_root
+        end
     end
 
     before_action only: [:destroy] do

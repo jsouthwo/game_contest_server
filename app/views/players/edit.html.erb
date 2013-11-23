@@ -1,0 +1,34 @@
+<h1> Edit your player! </h1>
+
+<%= form_for @player do |f| %>
+    <div class='form-group'>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control'%>
+    </div>
+
+    <div class='form-group'>
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control'%>
+    </div>
+
+    <div class='form-group' >
+        <%= f.label :downloadable, 'Allow others to download this player' %>
+        <!--
+        <%# f.label :downloadable, 'Downloadable' %>
+        -->
+        <%= f.check_box :downloadable, class: 'form-control' %>
+    </div>
+
+    <div class='form-group' >
+        <%= f.label :playable, 'Allow others to compete against this player' %>
+        <%= f.check_box :playable, class: 'form-control' %>
+    </div>
+
+    <div class='form-group'>
+        <%= f.label :upload, 'Upload file' %>
+        <%= f.file_field :upload %>
+    </div>
+
+    <%= f.submit 'Update Player', class: 'btn btn-primary' %>
+
+<% end %>

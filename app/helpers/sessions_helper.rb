@@ -75,6 +75,16 @@ module SessionsHelper
             redirect_to root_path
         end
     end
+
+    def ensure_user_owns_player__flash_danger_goes_to_root
+        @player = Player.find(params[:id])
+        @user = @player.user
+        unless current_user?(@user)
+            #flash[:danger] = "#{current_user.username}, you may not change that referee."
+            flash[:danger] = "You may not do that."
+            redirect_to root_path
+        end
+    end
 end
 
 

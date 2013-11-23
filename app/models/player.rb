@@ -6,6 +6,8 @@ class Player < ActiveRecord::Base
     has_many :matches, through: :player_matches
     has_many :player_matches
 
+    include Uploadable
+=begin
     def upload=(uploaded_io)
         time_no_spaces = Time.now.to_s.gsub(/\s/, '_')
         # ... code and stuff ...
@@ -23,11 +25,13 @@ class Player < ActiveRecord::Base
             self.file_location = file_location
         end
     end
+=end
 
     validates :description,     presence: true
-    validates :name,            presence: true, uniqueness: true
+    validates :name,            presence: true, uniqueness: {scope: :contest_id}
     validates :contest,         presence: true 
     validates :user,            presence: true 
+=begin
     validates :file_location,   presence: true
     validate  :valid_file_location?
 
@@ -35,4 +39,5 @@ class Player < ActiveRecord::Base
         errors.add(:file_location, "must be valid") if 
         self.file_location and not (File.exists?(self.file_location) or File.symlink?(self.file_location)) 
     end
+=end
 end

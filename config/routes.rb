@@ -22,9 +22,6 @@ GameContestServer::Application.routes.draw do
     end
 
 
-    # Players controller
-    resources :players
-
 
 
     # The priority is based upon order of creation: first created -> highest priority.
