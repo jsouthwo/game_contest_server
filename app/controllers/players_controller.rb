@@ -1,7 +1,5 @@
 class PlayersController < ApplicationController
-    before_action only: [:new, :create] do
-        ensure_user_logged_in__flash_warn_goes_to_login
-    end
+    before_action :ensure_user_logged_in__flash_warn_goes_to_login, only: [:new, :create]
 
     before_action only: [:edit, :update] do
         unless ensure_user_logged_in__flash_warn_goes_to_login
@@ -22,7 +20,6 @@ class PlayersController < ApplicationController
         @player = contest.players.build
     end
 
-    # /contests/:contest_id/players/new
     def create
         contest = Contest.find(params[:contest_id])
         @player = contest.players.build(acceptable_params)
@@ -31,13 +28,6 @@ class PlayersController < ApplicationController
             flash[:success] = 'Player created'
             redirect_to @player
         else
-=begin
-            errors = @player.errors.to_a
-            errors.each do |e|
-                puts e.to_s
-            end
-            puts
-=end
             flash.now[:danger] = 'Invalid input'
             render :new
         end
@@ -59,13 +49,11 @@ class PlayersController < ApplicationController
     end
 
     def destroy
-        ##### TODO: HOW DOES THIS WORK???
-        contest = @player.contest
         @player = Player.find(params[:id])
         flash[:success] = "#{@player.name} deleted"
         @player.destroy
         File.delete(@player.file_location)
-        redirect_to contest_players_path(contest)
+        redirect_to contest_players_path(@player.contest)
     end
 
     def show

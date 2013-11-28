@@ -10,21 +10,16 @@ class UsersController < ApplicationController
     
     before_action :ensure_admin__flash_danger_goes_to_root, only: [:destroy]
 
-=begin
-    before_action only: [:destroy] do
-        ensure_admin__flash_danger_goes_to_root
-    end
-=end
 
     respond_to :html, :json, :xml
+
 
     def new
         @user = User.new
         respond_with(@user)
     end
 
-=begin
-For documentation purposes
+=begin  For documentation purposes
     def create
         @user = User.new(acceptable_params)
 
