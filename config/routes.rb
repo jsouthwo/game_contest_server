@@ -19,6 +19,8 @@ GameContestServer::Application.routes.draw do
     # Contests controller
     resources :contests do
         resources :players, shallow: true
+        ## NOTE: CHANGED
+        resources :matches, shallow: true
     end
 
 
