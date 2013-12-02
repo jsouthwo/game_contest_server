@@ -5,4 +5,7 @@ class Match < ActiveRecord::Base
   has_many :player_matches
 
   validates :manager, presence: true
+
+  validates :completion, presence: true
+#  validates :earliest_start, presence: true
 end
