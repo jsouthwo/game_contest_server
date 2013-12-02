@@ -1,5 +1,10 @@
 require 'securerandom'
 class Referee < ActiveRecord::Base
+    
+    def referee
+        self
+    end
+
     belongs_to :user
 
     has_many :contests
