@@ -53,6 +53,13 @@ FactoryGirl.define do
 
     factory :contest_match do
       association :manager, factory: :contest
+
+      before(:create) do |match|
+	match.manager.referee.players_per_game.times do
+	  p = create(:player, contest: match.manager)
+	  create(:player_match, player: p, match: match)
+	end
+      end
     end
 
     factory :challenge_match do
