@@ -17,13 +17,10 @@ GameContestServer::Application.routes.draw do
     resources :referees
 
     # Contests controller
-    resources :contests do
-        resources :players, shallow: true
-        ## NOTE: CHANGED
-        resources :matches, shallow: true
+    resources :contests, shallow: true do
+        resources :players#, shallow: true
+        resources :matches, only: [:index, :show]# shallow: true, 
     end
-
-
 
 
     # The priority is based upon order of creation: first created -> highest priority.
