@@ -1,7 +1,5 @@
-<!--
-<h2> Match <%# match.id %> </h2>
--->
 <h2> Matches </h2>
+<li> <%= link_to match.id, match_path(match.manager_id) %> </li>
 <li> Status: <%= match.status %> </li>
 <li> Time until earliest start: <%= distance_of_time_in_words_to_now(match.earliest_start) %> </li>
 <li> Manager name: <%= match.manager.name %> </li>

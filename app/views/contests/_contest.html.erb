@@ -1,12 +1,4 @@
-<!--
-<li> <%# link_to contest.name, contest_path(contest) %> </li>
-<li> Contest description: <%# contest.description %> </li>
-<li> Contest type: <%# contest.contest_type %> </li>
--->
-
 <h3> Contest </h3>
-<!-- <li> Name: <%# contest.name %> </li> -->
-<!--<li> Name: <%# link_to contest.name, contest_path(contest) %> </li> -->
 <li> Name: <%= link_to contest.name, contest_path(contest) %> </li>
 <li> Submit Deadline: <%= contest.deadline %> </li>
 <li> Starting Date: <%= contest.start %> </li>
