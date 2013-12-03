@@ -13,3 +13,15 @@
 <ul>
     <%= render @player.contest %>
 </ul>
+
+<h5> Matches this players has participated in </h5>
+<ul>
+    <%= render @player.matches %>
+</ul>
+
+<p> Record: <%= @wins %>-<%= @losses %> </p>
+<ul>
+    <% @matches.each do |m| %>    
+        <%= m.result %>
+    <% end %>
+</ul>

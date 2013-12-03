@@ -1,18 +1,11 @@
 class PlayersController < ApplicationController
     before_action :ensure_user_logged_in__flash_warn_goes_to_login, only: [:new, :create]
 
-    before_action only: [:edit, :update] do
+    before_action only: [:edit, :update, :destroy] do
         unless ensure_user_logged_in__flash_warn_goes_to_login
             ensure_user_owns_player__flash_danger_goes_to_root
         end
     end
-
-    before_action only: [:destroy] do
-        unless ensure_user_logged_in__flash_warn_goes_to_login
-            ensure_user_owns_player__flash_danger_goes_to_root
-        end
-    end
-
 
     # /contests/:contest_id/players/new
     def new
@@ -58,6 +51,17 @@ class PlayersController < ApplicationController
 
     def show
         @player = Player.find(params[:id])
+        @matches = @player.player_matches
+        @wins = 0
+        @losses = 0
+        @matches.each do |match|
+            if match.result.downcase == "win"
+                @wins += 1
+            elsif match.result.downcase == "loss"
+                @losses += 1
+            end
+        end
+
     end
 
     def index
@@ -66,13 +70,13 @@ class PlayersController < ApplicationController
     end
 
     private 
-        def acceptable_params
-            params.require(:player).permit(:name, 
-                                            :description, 
-                                            :downloadable, 
-                                            :playable,
-                                            :contest_id,
-                                            :user_id,
-                                            :upload)
-        end
+    def acceptable_params
+        params.require(:player).permit(:name, 
+                                       :description, 
+                                       :downloadable, 
+                                       :playable,
+                                       :contest_id,
+                                       :user_id,
+                                       :upload)
+    end
 end
