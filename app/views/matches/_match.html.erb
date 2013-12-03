@@ -2,6 +2,14 @@
 <li> <%= link_to match.id, match_path(match.manager_id) %> </li>
 <li> Status: <%= match.status %> </li>
 <li> Time until earliest start: <%= distance_of_time_in_words_to_now(match.earliest_start) %> </li>
+<li> Time since completion: <%= distance_of_time_in_words_to_now(match.completion) %> </li>
 <li> Manager name: <%= match.manager.name %> </li>
 <li> Manager referee name: <%= match.manager.referee.name %> </li>
 <li> Players per game: <%= match.manager.referee.players_per_game %> </li>
+<li>
+    <ol>
+        <% match.player_matches.order(score: :desc).each do |pm| %>
+            <li><%= link_to pm.player.name, pm.player %>: <%= pm.score %> </li>
+        <% end %>
+    </ol>
+</li>

@@ -3,7 +3,7 @@ module Uploadable
 
     included do 
         validates :file_location, presence: true
-    validate :valid_file_location?
+        validate :valid_file_location?
     end
 
     def valid_file_location?
