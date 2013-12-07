@@ -1,12 +1,11 @@
-<h2> Referees </h2>
-<h4> <%= link_to "New Referee", new_referee_path %> </h4>
-<%= @referees.length %> referees:
+<h1> Referee: </h1>
+
+<p>Name: <%= referee.name %></p>
+<p>Owner: <%= referee.user.username %> </p>
+<p><%= link_to 'Rules', referee.rules_url %></p>
+<p>Players per game: <%= referee.players_per_game %></p>
+
+<h5> Contests that use this referee: </h5>
 <ul>
-    <% @referees.each do |referee| %>
-        <li>
-        <%= link_to referee.name, referee_path(referee) %> |
-        <% if logged_in? and current_user?(referee.user) %>
-            <%= link_to 'delete', referee_path(referee), method: :delete, data: { confirm: 'Are you sure?'} %> 
-        <% end %>
-        </li>
-    <% end %>
+    <%= render referee.contests %>
+</ul>

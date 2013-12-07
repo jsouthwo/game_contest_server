@@ -19,7 +19,7 @@
     <%= render @player.matches %>
 </ul>
 
-<p> Record: <%= @wins %>-<%= @losses %> </p>
+<p> Record: <%= @player.player_matches.wins.count %>-<%= @player.player_matches.losses.count %> </p>
 <ul>
     <% @matches.each do |m| %>    
         <%= m.result %>

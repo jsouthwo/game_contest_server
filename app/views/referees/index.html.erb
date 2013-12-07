@@ -2,5 +2,12 @@
 <h3><%= @referees.length %> referees:</h3>
 
 <ul>
-    <%= render @referees %>
+    <% @referees.each do |referee| %>
+        <li>
+        <%= link_to referee.name, referee_path(referee) %> |
+        <% if logged_in? and current_user?(referee.user) %>
+            <%= link_to 'delete', referee_path(referee), method: :delete, data: { confirm: 'Are you sure?'} %> 
+        <% end %>
+        </li>
+    <% end %>
 </ul>

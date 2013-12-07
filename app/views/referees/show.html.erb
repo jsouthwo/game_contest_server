@@ -1,12 +1,1 @@
-<h1> Referee: </h1>
-
-<p>Name: <%= @referee.name %></p>
-<p>Owner: <%= @referee.user.username %> </p>
-<p><%= link_to 'Rules', @referee.rules_url %></p>
-<p>Players per game: <%= @referee.players_per_game %></p>
-
-<h5> Contests that use this referee: </h5>
-<ul>
-    <%= render @referee.contests %>
-</ul>
-
+<%= render @referee %>

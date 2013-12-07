@@ -8,7 +8,7 @@
 <li> Players per game: <%= match.manager.referee.players_per_game %> </li>
 <li>
     <ol>
-        <% match.player_matches.order(score: :desc).each do |pm| %>
+        <% match.player_matches.each do |pm| %>
             <li><%= link_to pm.player.name, pm.player %>: <%= pm.score %> </li>
         <% end %>
     </ol>

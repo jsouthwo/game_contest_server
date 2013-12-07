@@ -5,8 +5,8 @@ class MatchesController < ApplicationController
     end
 
     def index
-        ## Probably not correct
-        @matches = Match.all
+        @contest = Contest.find(params[:contest_id])
+        @matches = @contest.matches
     end
 
 end

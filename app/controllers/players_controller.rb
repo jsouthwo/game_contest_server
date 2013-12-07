@@ -52,15 +52,6 @@ class PlayersController < ApplicationController
     def show
         @player = Player.find(params[:id])
         @matches = @player.player_matches
-        @wins = 0
-        @losses = 0
-        @matches.each do |match|
-            if match.result.downcase == "win"
-                @wins += 1
-            elsif match.result.downcase == "loss"
-                @losses += 1
-            end
-        end
 
     end
 
