@@ -30,8 +30,11 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <!--<li><a href="/login">Log In</a></li>-->
                 <% if ! logged_in? then %>
+                    <!--
+                    <li><%#= button_to "Log In", login_path, method: :get, class: 'btn btn-default navbar-btn' %></li>
+                    <li><%#= button_to "Sign Up", signup_path, method: :get, class: 'btn btn-primary navbar-btn' %></li>
+                    -->
                     <li><a href=<%= login_path %>>Log In</a></li>
                     <li><a href=<%= signup_path %>>Sign Up</a></li>
                 <% else %>
@@ -45,6 +48,9 @@
                         <%= link_to "New Referee", new_referee_path %>
                     </li>
                     <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+                    <!--
+                    <li><%#= button_to "Log Out", logout_path, :method => :delete, class: 'btn btn-default navbar-btn' %></li>
+                    -->
                 <% end %>
             </ul>
 
